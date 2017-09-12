@@ -34,26 +34,30 @@ export const getCountsObject = (logs) =>
   logs
     .split('\n')
     .sort()
-    .reduce((acc, i) => {
-      const arr = i.split(" ")
-      const asset = arr[3]
-      const status = parseInt(arr[5])
-      const requestType = arr[2].substring(1) // removes first character
+    .reduce(reduceLogs, [])
 
-      if(status >= 200 && status <= 299 && requestType == `GET`) {
-        const count = acc.hasOwnProperty(asset) ? acc[asset].count + 1 : 1  
-        
-        acc[asset] = {
-          asset,
-          requestType,
-          status,
-          bytes: parseInt(arr[6]),
-          count,
-          totalBytes:  parseInt(arr[6]) * count,
-        }
-      }
-      return acc
-    }, [])
+export const reduceLogs = (acc, i) => {
+  const arr = i.split(" ")
+  const asset = arr[3]
+  const status = parseInt(arr[5])
+  const requestType = arr[2].substring(1)
+  const bytes = parseInt(arr[6])
+  
+  if(status >= 200 && status <= 299 && requestType == `GET`) {
+    const count = acc.hasOwnProperty(asset) ? acc[asset].count + 1 : 1  
+    const totalBytes = parseInt(arr[6]) * count
+    
+    acc[asset] = {
+      asset,
+      requestType,
+      status,
+      bytes: parseInt( arr[6]),
+      count,
+      totalBytes,
+    }
+  }
+  return acc
+}
 
 export const getTop10 = (obj) =>
   Object.entries(obj)
