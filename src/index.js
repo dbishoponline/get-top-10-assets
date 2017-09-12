@@ -11,12 +11,14 @@ export const getCountsObject = (logs) =>
       const arr = i.split(" ")
       const asset = arr[3]
       const status = parseInt(arr[5])
+      const requestType = arr[2].substring(1) // removes first character
 
-      if(status >= 200 && status <= 299) {
+      if(status >= 200 && status <= 299 && requestType == `GET`) {
         const count = acc.hasOwnProperty(asset) ? acc[asset].count + 1 : 1  
         
         acc[asset] = {
           asset,
+          requestType,
           status,
           bytes: parseInt(arr[6]),
           count,
