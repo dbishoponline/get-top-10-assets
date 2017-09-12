@@ -51,7 +51,7 @@ export const reduceLogs = (acc, i) => {
       asset,
       requestType,
       status,
-      bytes: parseInt( arr[6]),
+      bytes,
       count,
       totalBytes,
     }

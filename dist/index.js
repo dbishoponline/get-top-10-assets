@@ -60,7 +60,7 @@ var reduceLogs = exports.reduceLogs = function reduceLogs(acc, i) {
       asset: asset,
       requestType: requestType,
       status: status,
-      bytes: parseInt(arr[6]),
+      bytes: bytes,
       count: count,
       totalBytes: totalBytes
     };
