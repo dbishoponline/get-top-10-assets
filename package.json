@@ -2,12 +2,12 @@
   "name": "showtop10",
   "version": "1.0.0",
   "description": "shows top 10 assets",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "babel --presets es2015,stage-0 -d dist/ src/ && node ./dist/index.js",
     "build": "babel --presets es2015,stage-0 -d dist/ src/",
     "debug": "babel --presets es2015,stage-0 -d dist/ src/ && node --inspect-brk ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "devDependencies": {
     "ava": "^0.17.0",
